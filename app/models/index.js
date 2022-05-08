@@ -19,5 +19,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.Designation = require('./Designation')(sequelize, Sequelize);
+db.Employee = require('./Employee')(sequelize, Sequelize);
 
 module.exports = db;
