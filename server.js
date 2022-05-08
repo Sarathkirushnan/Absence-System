@@ -15,6 +15,9 @@ app.use(
 		extended: false,
 	})
 );
+global.util = require('./app/utils/function');
+const db = require('./app/models');
+db.sequelize.sync();
 
 myRouter(app);
 
