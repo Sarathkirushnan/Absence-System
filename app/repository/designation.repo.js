@@ -29,3 +29,34 @@ exports.getAllDesig = () => {
 			.catch((err) => reject(err));
 	});
 };
+
+exports.deleteDesigById = (id) => {
+	return new Promise((resolv, reject) => {
+		database
+			.query(`SELECT * FROM designation WHERE id = $1`, [id])
+			.then((result) => {
+				database
+					.query(`DELETE FROM designation WHERE id = $1`, [id])
+					.then((res) => resolv(result))
+					.catch((err) => reject(err));
+			})
+			.catch((err) => reject(err));
+	});
+};
+
+exports.updateDesigById = ({ id, name }) => {
+	return new Promise((resolv, reject) => {
+		database
+			.query(
+				`UPDATE public.designation SET name = $1, updatedAt = now() WHERE id = $2;`,
+				[name, id]
+			)
+			.then((res) => {
+				database
+					.query(`SELECT * FROM designation WHERE id = $1`, [id])
+					.then((result) => resolv(result))
+					.catch((err) => reject(err));
+			})
+			.catch((err) => reject(err));
+	});
+};
