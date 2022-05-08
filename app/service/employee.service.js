@@ -36,3 +36,22 @@ exports.saveEmploye = async (req, resCallBack) => {
 		return resCallBack(true, error);
 	}
 };
+
+exports.getEmploye = async (req, resCallBack) => {
+	Employee.findAll({ include: ['designation'] })
+		.then((emp) => {
+			return resCallBack(false, emp);
+		})
+		.catch((e) => {
+			return resCallBack(true, e);
+		});
+};
+exports.getFullName = async (req, resCallBack) => {
+	Employee.getFullName()
+		.then((emp) => {
+			return resCallBack(false, emp);
+		})
+		.catch((e) => {
+			return resCallBack(true, e);
+		});
+};

@@ -2,7 +2,14 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-	class Employee extends Model {}
+	class Employee extends Model {
+		static associate(models) {
+			Employee.belongsTo(models.Designation, {
+				foreignKey: 'designationId',
+				as: 'designation',
+			});
+		}
+	}
 	Employee.init(
 		{
 			id: {
@@ -23,6 +30,13 @@ module.exports = (sequelize, DataTypes) => {
 			deactivateStatus: DataTypes.BOOLEAN,
 			deactivateReason: DataTypes.STRING,
 			approverStatus: DataTypes.BOOLEAN,
+			designationId: {
+				type: DataTypes.INTEGER,
+				references: {
+					model: 'designation',
+					key: 'id',
+				},
+			},
 		},
 		{
 			sequelize,

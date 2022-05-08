@@ -18,6 +18,7 @@ exports.employeeReqFormet = (paylode) => {
 		deactivateStatus: Joi.boolean().required(),
 		deactivateReason: Joi.string().required(false),
 		approverStatus: Joi.boolean(),
+		designationId: Joi.number().required(),
 	});
 	return employee.validate(paylode);
 };
