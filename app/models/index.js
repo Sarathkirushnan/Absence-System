@@ -20,6 +20,7 @@ db.sequelize = sequelize;
 
 db.Designation = require('./Designation')(sequelize, Sequelize);
 db.Employee = require('./Employee')(sequelize, Sequelize);
+db.LeaveType = require('./LeaveType')(sequelize, Sequelize);
 
 db.Designation.associate(db);
 db.Employee.associate(db);
