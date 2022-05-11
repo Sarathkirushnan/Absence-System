@@ -1,5 +1,5 @@
 'use strict';
-const { Model } = require('sequelize');
+const { Model, Sequelize } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
 	class ApprovalStatus extends Model {
@@ -22,7 +22,10 @@ module.exports = (sequelize, DataTypes) => {
 				primaryKey: true,
 			},
 			comment: DataTypes.STRING,
-			status: DataTypes.STRING,
+			status: {
+				type: Sequelize.ENUM('NEW', 'PENDING', 'ACCEPT', 'REJECT'),
+				defaultValue: 'NEW',
+			},
 			date: DataTypes.DATE,
 			leaveRequestId: DataTypes.INTEGER,
 			employeeApproverId: DataTypes.INTEGER,

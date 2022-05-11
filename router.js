@@ -12,4 +12,5 @@ module.exports = function (app) {
 		endPoint.EMPLOYEE_APPROVER,
 		require('./app/routes/employeeApprover.router')
 	);
+	app.use(endPoint.LEAVE_REQUEST, require('./app/routes/leaveRequest.router'));
 };
